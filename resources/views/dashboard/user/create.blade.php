@@ -3,6 +3,16 @@
 
 @section('content')
 <div class="container">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            @error('error')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @enderror
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card shadow">

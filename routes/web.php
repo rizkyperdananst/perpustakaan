@@ -34,14 +34,16 @@ Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('au
 
 Route::middleware('auth')->group(function() {
     Route::prefix('/admin')->group(function() {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+        Route::group(['middleware' => ['auth', 'statusUser:Admin']], function() {
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+            Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-        Route::resource('/category-book', CategoryBookController::class);
-        Route::resource('/book', BookController::class);
-        Route::resource('/student', StudentController::class);
-        Route::resource('/borrow', BorrowController::class);
-        Route::resource('/user', UserController::class);
-        Route::resource('/return', ReturnController::class);
+            Route::resource('/category-book', CategoryBookController::class);
+            Route::resource('/book', BookController::class);
+            Route::resource('/student', StudentController::class);
+            Route::resource('/borrow', BorrowController::class);
+            Route::resource('/user', UserController::class);
+            Route::resource('/return', ReturnController::class);
+        });
     });
 });

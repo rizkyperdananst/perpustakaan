@@ -11,7 +11,41 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('dashboard.user.index');
+        $users = User::all();
+
+        return view('dashboard.user.index', compact('users'));
+    }
+
+    public function create()
+    {
+        $statuses = ['Admin', 'Siswa'];
+
+        return view('dashboard.user.create', compact('statuses'));
+    }
+
+    public function store(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'status' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($request->status == "Pilih Status") {
+            return back()->withErrors([
+                'error' => 'Harap pilih status dengan benar!',
+            ]);
+        };
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'status' => $request->status,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('user.index')->with('status', 'Data User Berhasil Ditambahkan');
     }
 
     public function edit($id)

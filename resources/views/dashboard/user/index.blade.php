@@ -16,35 +16,44 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
-                {{-- <div class="card-header d-flex justify-content-between">
+                <div class="card-header d-flex justify-content-between">
                     <h4 class="fw-bold">Data User</h4>
                     <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah</a>
-                </div> --}}
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no=1;
+                                @endphp
+                                @foreach ($users as $u)                                    
                                 <tr>
-                                    <td>{{ Auth::user()->name }}</td>
-                                    <td>{{ Auth::user()->email }}</td>
-                                    <td width="5%">
-                                        <a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-warning">
+                                    <td width="5%">{{ $no++ }}</td>
+                                    <td>{{ $u->name }}</td>
+                                    <td>{{ $u->email }}</td>
+                                    <td>{{ $u->status }}</td>
+                                    <td width="14%">
+                                        <a href="{{ route('user.edit', $u->id) }}" class="btn btn-warning">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
-                                        {{-- <form action="#" method="POST" class="d-inline">
+                                        <form action="#" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i></button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
