@@ -20,11 +20,14 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt($creadentials) && Auth::user()->status === 'Admin') 
-        {
+        if(Auth::attempt($creadentials) && Auth::user()->status === 'Admin') {
             $request->session()->regenerateToken();
 
             return redirect()->route('dashboard.admin');
+        } elseif(Auth::attempt($creadentials) && Auth::user()->status === 'Siswa') {
+            $request->session()->regenerateToken();
+
+            return redirect()->route('dashboard.siswa');
         }
 
         return back()->withErrors([

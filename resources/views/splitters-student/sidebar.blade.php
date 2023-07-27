@@ -15,7 +15,7 @@
             <span class="hide-menu">Home</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('admin/dashboard*')) ? 'active' : '' }}" href="{{ route('dashboard.admin') }}" aria-expanded="false">
+            <a class="sidebar-link {{ (request()->is('student/dashboard*')) ? 'active' : '' }}" href="{{ route('dashboard.siswa') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -34,7 +34,10 @@
               <span class="hide-menu">Profile</span>
             </a>
           </li> --}}
-          <li class="sidebar-item">
+                {{-- <i class="fa-solid fa-clipboard-user fs-5"></i> --}}
+
+
+          {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/category-book*')) ? 'active' : '' }}" href="{{ route('category-book.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-bookmark fs-5"></i>
@@ -62,7 +65,6 @@
             <a class="sidebar-link {{ (request()->is('admin/borrow*')) ? 'active' : '' }}" href="{{ route('borrow.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-hand-point-right fs-5"></i>
-                {{-- <i class="fa-solid fa-clipboard-user fs-5"></i> --}}
               </span>
               <span class="hide-menu">Peminjaman</span>
             </a>
@@ -74,7 +76,9 @@
               </span>
               <span class="hide-menu">Pengembalian</span>
             </a>
-          </li>
+          </li> --}}
+
+
           {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/studi-program*')) ? 'active' : '' }}" href="{{ route('study-program.index') }}" aria-expanded="false">
               <span>
@@ -96,7 +100,7 @@
             <span class="hide-menu">AUTH</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('admin/user*')) ? 'active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
+            <a class="sidebar-link {{ (request()->is('student/user*')) ? 'active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-login"></i>
               </span>
