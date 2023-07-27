@@ -44,32 +44,32 @@
               </span>
               <span class="hide-menu">Kategori Buku</span>
             </a>
-          </li>
+          </li> --}}
           <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('admin/book*')) ? 'active' : '' }}" href="{{ route('book.index') }}" aria-expanded="false">
+            <a class="sidebar-link {{ (request()->is('student/book-student*')) ? 'active' : '' }}" href="{{ route('book-student.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-book fs-5"></i>
               </span>
               <span class="hide-menu">Buku</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/student*')) ? 'active' : '' }}" href="{{ route('student.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-user fs-5"></i>
               </span>
               <span class="hide-menu">Siswa</span>
             </a>
-          </li>
-          <li class="sidebar-item">
+          </li> --}}
+          {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/borrow*')) ? 'active' : '' }}" href="{{ route('borrow.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-hand-point-right fs-5"></i>
               </span>
               <span class="hide-menu">Peminjaman</span>
             </a>
-          </li>
-          <li class="sidebar-item">
+          </li> --}}
+          {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/return*')) ? 'active' : '' }}" href="{{ route('return.index') }}" aria-expanded="false">
               <span>
                 <i class="fa-solid fa-hand-point-left fs-5"></i>
@@ -77,30 +77,12 @@
               <span class="hide-menu">Pengembalian</span>
             </a>
           </li> --}}
-
-
-          {{-- <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('admin/studi-program*')) ? 'active' : '' }}" href="{{ route('study-program.index') }}" aria-expanded="false">
-              <span>
-                <i class="ti ti-typography"></i>
-              </span>
-              <span class="hide-menu">Program Studi</span>
-            </a>
-          </li> --}}
-          {{-- <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('admin/student*')) ? 'active' : '' }}" href="{{ route('student.index') }}" aria-expanded="false">
-              <span>
-                <i class="ti ti-typography"></i>
-              </span>
-              <span class="hide-menu">Mahasiswa</span>
-            </a>
-          </li> --}}
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">AUTH</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link {{ (request()->is('student/user*')) ? 'active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
+            <a class="sidebar-link {{ (request()->is('student/user-student*')) ? 'active' : '' }}" href="{{ route('user-student.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-login"></i>
               </span>

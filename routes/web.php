@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\ReturnController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBookController;
+use App\Http\Controllers\Student\BookController as StudentBookController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Student\UserController as StudentUserController;
 
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['auth', 'statusUser:Siswa']], function() {
     Route::prefix('/student')->group(function() {
         Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard.siswa');
 
-        Route::resource('/user', StudentUserController::class);
+        Route::resource('/user-student', StudentUserController::class);
+        Route::resource('/book-student', StudentBookController::class);
     });
 });
