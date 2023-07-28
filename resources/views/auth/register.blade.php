@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | Perpustakaan</title>
+  <title>Register | Perpustakaan</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="{{ url('assets/css/styles.min.css') }}" />
 </head>
@@ -21,19 +21,27 @@
             <div class="card mb-0">
               <div class="card-body">
                 <h2 class="text-center mb-2">Perpustakaan</h2>
-                <p class="text-center">Login to Admin</p>
-                {{-- @error('email')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>{{ $message }}</strong>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                @enderror --}}
-                <form action="{{ route('authenticate') }}" method="POST">
+                <p class="text-center">Register</p>
+                <form action="{{ route('registerProcess') }}" method="POST">
                   @csrf
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="masukkan email" required>
-                    @error('email')
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="masukkan nama" required>
+                    @error('nama')
+                        <div class="alert alert-danger mt-2 mb-2 p-2">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="nis" class="form-label">NIS</label>
+                    <input type="number" name="nis" class="form-control @error('nis') is-invalid @enderror" id="nis" placeholder="masukkan nis" required>
+                    @error('nis')
+                        <div class="alert alert-danger mt-2 mb-2 p-2">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="kelas" class="form-label">Kelas</label>
+                    <input type="text" name="kelas" class="form-control @error('kelas') is-invalid @enderror" id="kelas" placeholder="masukkan kelas" required>
+                    @error('kelas')
                         <div class="alert alert-danger mt-2 mb-2 p-2">{{ $message }}</div>
                     @enderror
                   </div>
@@ -53,10 +61,10 @@
                     </div>
                     <a class="text-primary fw-bold" href="#">Forgot Password ?</a>
                   </div> --}}
-                  <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                  <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Register</button>
                   <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">Belum punya akun?</p>
-                    <a class="text-primary fw-bold ms-2" href="{{ route('register') }}">Silahkan buat akun!</a>
+                    <p class="fs-4 mb-0 fw-bold">Sudah punya akun?</p>
+                    <a class="text-primary fw-bold ms-2" href="{{ route('login-student') }}">Silahkan login!</a>
                   </div>
                 </form>
               </div>

@@ -20,12 +20,18 @@
                     <h5>Peminjaman Buku</h5>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('book-student.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label for="student_id" class="form-label">Siswa</label>
-                                <input type="text" name="{{ Auth::user()->id }}" value="{{ Auth::user()->name }}" id="student_id" class="form-control" readonly>
+                                <select name="student_id" id="student_id" class="form-control @error('student_id') is-invalid @enderror">
+                                    @foreach ($students as $s)
+                                        @if (Auth::user()->name === $s->nama)
+                                            <option value="{{ $s->id }}">{{ $s->nama }}</option>
+                                        @endif
+                                    @endforeach    
+                                </select>
                                 @error('student_id')
                                     <div class="alert alert-danger mt-1 mb-1 p-2">{{ $message }}</div>
                                 @enderror
@@ -61,8 +67,8 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label for="admin" class="form-label">Admin</label>
-                                <input type="text" name="admin" value="{{ Auth::user()->name }}" id="admin" class="form-control @error('admin') is-invalid @enderror" readonly>
+                                <label for="admin" class="form-label">Status Disetujui Admin</label>
+                                <input type="text" name="admin" value="{{ $allow }}" id="admin" class="form-control @error('admin') is-invalid @enderror" readonly>
                                 @error('admin')
                                     <div class="alert alert-danger mt-1 mb-1 p-2">{{ $message }}</div>
                                 @enderror
@@ -77,7 +83,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-primary float-end ms-3">Tambah</button>
+                                <button class="btn btn-primary float-end ms-3">Pinjam</button>
                                 <a href="{{ route('book-student.index') }}" class="btn btn-secondary float-end">Kembali</a>
                             </div>
                         </div>

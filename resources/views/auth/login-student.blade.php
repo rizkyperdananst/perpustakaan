@@ -21,19 +21,25 @@
             <div class="card mb-0">
               <div class="card-body">
                 <h2 class="text-center mb-2">Perpustakaan</h2>
-                <p class="text-center">Login to Admin</p>
-                {{-- @error('email')
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>{{ $message }}</strong>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
-                @enderror --}}
-                <form action="{{ route('authenticate') }}" method="POST">
+                <p class="text-center">Mohon isi identitas anda..</p>
+                @error('error')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @enderror
+                @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>{{ session('status') }}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <form action="{{ route('authenticate-student') }}" method="POST">
                   @csrf
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="masukkan email" required>
-                    @error('email')
+                    <label for="nis" class="form-label">NIS</label>
+                    <input type="number" name="nis" class="form-control @error('nis') is-invalid @enderror" id="nis" placeholder="masukkan nis" required>
+                    @error('nis')
                         <div class="alert alert-danger mt-2 mb-2 p-2">{{ $message }}</div>
                     @enderror
                   </div>
@@ -44,15 +50,6 @@
                         <div class="alert alert-danger mt-2 mb-2 p-2">{{ $message }}</div>
                     @enderror
                   </div>
-                  {{-- <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
-                    </div>
-                    <a class="text-primary fw-bold" href="#">Forgot Password ?</a>
-                  </div> --}}
                   <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Belum punya akun?</p>

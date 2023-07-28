@@ -35,7 +35,7 @@
           <a class="nav-link" href="#footer">Tentang</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link btn btn-primary text-white" href="#">Login</a>
+          <a href="{{ route('login-student') }}" class="nav-link btn btn-primary text-white" href="#">Login</a>
         </li>
       </ul>
     </div>
