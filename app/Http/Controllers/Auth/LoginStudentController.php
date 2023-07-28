@@ -30,4 +30,15 @@ class LoginStudentController extends Controller
             'error' => 'Pastikan Anda Sudah Mempunyai Akun!',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('student')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
+
+    }
 }

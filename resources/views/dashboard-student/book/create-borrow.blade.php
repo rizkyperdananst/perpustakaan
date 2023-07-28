@@ -26,11 +26,7 @@
                             <div class="col-6">
                                 <label for="student_id" class="form-label">Siswa</label>
                                 <select name="student_id" id="student_id" class="form-control @error('student_id') is-invalid @enderror">
-                                    @foreach ($students as $s)
-                                        @if (Auth::user()->name === $s->nama)
-                                            <option value="{{ $s->id }}">{{ $s->nama }}</option>
-                                        @endif
-                                    @endforeach    
+                                    <option value="{{ Auth::guard('student')->user()->id }}">{{ Auth::guard('student')->user()->nama }}</option> 
                                 </select>
                                 @error('student_id')
                                     <div class="alert alert-danger mt-1 mb-1 p-2">{{ $message }}</div>

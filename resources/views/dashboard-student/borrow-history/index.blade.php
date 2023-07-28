@@ -1,5 +1,5 @@
-@extends('layouts.dashboard')
-@section('title', 'Admin | Data Peminjaman')
+@extends('layouts.dashboard-student')
+@section('title', 'Admin | Riwayat Peminjaman')
     
 @section('content')
 <div class="container">
@@ -13,12 +13,24 @@
             @endif
         </div>
     </div>
+    {{-- <div class="row mt-3 mb-3">
+        <div class="col-md-12">
+            @if ($status)
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <h5>Silahkan tunggu sampai <b>Admin</b> menyetujui peminjaman buku Anda!</h5>
+            </div>
+            @else
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h5><b>Admin</b> sudah menyetujui, silahkan ambil buku yang anda pinjam di perpustakaan!</h5>
+            </div>
+            @endif
+        </div>
+    </div> --}}
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between">
-                    <h5>Data Peminjaman</h5>
-                    <a href="{{ route('borrow.create') }}" class="btn btn-info">Tambah</a>
+                    <h5>Riwayat Peminjaman Anda</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -26,38 +38,31 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Student</th>
-                                    <th>Book</th>
+                                    <th>Nama SIswa</th>
+                                    <th>Judul Buku</th>
                                     <th>Peminjaman</th>
                                     <th>Pengembalian</th>
                                     <th>Disetujui</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no= 1;
                                 @endphp
-                                @foreach ($borrows as $b)
+                                @foreach ($borrow_history as $bh)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $b->students->nama }}</td>
-                                    <td>{{ $b->books->judul }}</td>
-                                    <td>{{ $b->peminjaman }}</td>
-                                    <td>{{ $b->pengembalian }}</td>
-                                    <td>{{ $b->admin }}</td>
-                                    <td>{{ $b->status }}</td>
-                                    <td width="14%">
-                                        <a href="{{ route('borrow.edit', $b->id) }}" class="btn btn-warning">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-                                        <form action="{{ route('borrow.destroy', $b->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    <td>{{ $bh->students->nama }}</td>
+                                    <td>{{ $bh->books->judul }}</td>
+                                    <td>{{ $bh->peminjaman }}</td>
+                                    <td>{{ $bh->pengembalian }}</td>
+                                    @if ($bh->admin === 'Belum Disetujui')
+                                    <td><span class="bg-danger text-white p-1 rounded">{{ $bh->admin }}</span></td>
+                                    @else
+                                    <td><span class="bg-success text-white p-1 rounded">{{ $bh->admin }}</span></td>
+                                    @endif
+                                    <td>{{ $bh->status }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

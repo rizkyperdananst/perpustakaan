@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -26,9 +27,15 @@ class StudentController extends Controller
             'nama' => 'required',
             'nis' => 'required|unique:students,nis',
             'kelas' => 'required',
+            'password' => 'required',
         ]);
 
-        $student = Student::create($validate);
+        $student = Student::create([
+            'nama' => $request->nama,
+            'nis' => $request->nis,
+            'kelas' => $request->kelas,
+            'password' => Hash::make($request->password),
+        ]);
 
         return redirect()->route('student.index')->with('status', 'Data Siswa Berhasil Ditambahkan');
     }
