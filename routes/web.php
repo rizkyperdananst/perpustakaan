@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginStudentController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\BookController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BorrowController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Dashboard\ReturnController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoryBookController;
+use App\Http\Controllers\Student\BookController as StudentBookController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Student\UserController as StudentUserController;
 
@@ -34,7 +37,13 @@ Route::get('/search-book', [HomeController::class, 'search_book'])->name('search
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 
-Route::group(['middleware' => ['auth', 'statusUser:Admin']], function() {
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register-student', [RegisterController::class, 'registerProcess'])->name('registerProcess');
+
+Route::get('/login-student', [LoginStudentController::class, 'login'])->name('login-student');
+Route::post('/authenticate-student', [LoginStudentController::class, 'authenticate'])->name('authenticate-student');
+
+Route::group(['middleware' => ['auth:user']], function() {
     Route::prefix('/admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
         Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
@@ -48,10 +57,11 @@ Route::group(['middleware' => ['auth', 'statusUser:Admin']], function() {
     });
 });
 
-Route::group(['middleware' => ['auth', 'statusUser:Siswa']], function() {
+Route::group(['middleware' => ['auth:student']], function() {
     Route::prefix('/student')->group(function() {
         Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard.siswa');
 
-        Route::resource('/user', StudentUserController::class);
+        Route::resource('/user-student', StudentUserController::class);
+        Route::resource('/book-student', StudentBookController::class);
     });
 });
