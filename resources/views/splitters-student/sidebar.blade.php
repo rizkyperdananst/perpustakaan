@@ -53,6 +53,14 @@
               <span class="hide-menu">Buku</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link {{ (request()->is('student/borrow-history*')) ? 'active' : '' }}" href="{{ route('borrow-history.index') }}" aria-expanded="false">
+              <span>
+                <i class="fa-solid fa-book fs-5"></i>
+              </span>
+              <span class="hide-menu">Riwayat Peminjaman</span>
+            </a>
+          </li>
           {{-- <li class="sidebar-item">
             <a class="sidebar-link {{ (request()->is('admin/student*')) ? 'active' : '' }}" href="{{ route('student.index') }}" aria-expanded="false">
               <span>

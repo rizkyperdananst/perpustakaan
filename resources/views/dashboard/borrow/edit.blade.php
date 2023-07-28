@@ -66,7 +66,16 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label for="admin" class="form-label">Admin</label>
-                                <input type="text" name="admin" value="{{ Auth::user()->name }}" id="admin" class="form-control @error('admin') is-invalid @enderror" readonly>
+                                <select name="admin" id="admin" class="form-select @error('admin') is-invalid @enderror">
+                                    <option selected hidden>Pilih Status Disetujui</option>
+                                    @foreach ($disetujui as $d)
+                                        @if ($b->admin == $d)
+                                            <option value="{{ $d }}" selected>{{ $d }}</option>
+                                        @else
+                                            <option value="{{ $d }}">{{ $d }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                                 @error('admin')
                                     <div class="alert alert-danger mt-1 mb-1 p-2">{{ $message }}</div>
                                 @enderror

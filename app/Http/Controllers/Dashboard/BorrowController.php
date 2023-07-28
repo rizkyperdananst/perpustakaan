@@ -29,8 +29,9 @@ class BorrowController extends Controller
         $peminjaman = date('d-F-Y');
         $pengembalian = date('d-F-Y', strtotime('+7 day', strtotime(date('d-m-Y'))));
         $status = 'Meminjam';
+        $disetujui = ['Belum Disetujui', 'Sudah Disetujui'];
 
-        return view('dashboard.borrow.create', compact('students', 'categories', 'books', 'peminjaman', 'pengembalian', 'status'));
+        return view('dashboard.borrow.create', compact('students', 'categories', 'books', 'peminjaman', 'pengembalian', 'status', 'disetujui'));
     }
 
     public function store(Request $request)
@@ -71,8 +72,9 @@ class BorrowController extends Controller
         $peminjaman = date('d-F-Y');
         $pengembalian = date('d-F-Y', strtotime('+7 day', strtotime(date('d-m-Y'))));
         $status = ['Meminjam', 'Mengembalikan'];
+        $disetujui = ['Belum Disetujui', 'Sudah Disetujui'];
 
-        return view('dashboard.borrow.edit', compact('b', 'students', 'categories', 'books', 'peminjaman', 'pengembalian', 'status'));
+        return view('dashboard.borrow.edit', compact('b', 'students', 'categories', 'books', 'peminjaman', 'pengembalian', 'status', 'disetujui'));
     }
 
     public function update(Request $request, $id)

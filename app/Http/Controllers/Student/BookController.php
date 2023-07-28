@@ -55,7 +55,7 @@ class BookController extends Controller
 
         $create_borrow = Borrow::create($validator);
 
-        return redirect()->route('book-student.index')->with('status', 'Data Peminjaman Berhasil Ditambahkan');
+        return redirect()->route('borrow-history.index')->with('status', 'Data Peminjaman Berhasil Ditambahkan');
     }
 
     public function show($id)

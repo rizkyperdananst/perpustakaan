@@ -26,9 +26,10 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Image</th>
-                                    <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Penerbit</th>
+                                    <th>Pengarang</th>
+                                    <th>Stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -40,9 +41,10 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td><img src="{{ url('storage/cover-books/', $b->image) }}" width="150" alt="" class="img img-fluid img-thumbnail border-dark"></td>
-                                    <td>{{ $b->category_books->nama_kategori }}</td>
                                     <td>{{ $b->judul }}</td>
                                     <td>{{ $b->penerbit }}</td>
+                                    <td>{{ $b->pengarang }}</td>
+                                    <td>{{ $b->stok }}</td>
                                     <td width="7%%">
                                         <a href="{{ route('book-student.show', $b->id) }}" class="btn btn-info">
                                             <i class="fa-regular fa-pen-to-square"></i>

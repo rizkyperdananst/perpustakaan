@@ -20,21 +20,11 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::guard('user')->attempt($credentials) && Auth::guard('user')->status === 'Admin') {
+        if (Auth::guard('user')->attempt($credentials)) {
             $request->session()->regenerateToken();
 
             return redirect()->route('dashboard.admin');
         }
-
-        // if(Auth::attempt($creadentials) && Auth::user()->status === 'Admin') {
-        //     $request->session()->regenerateToken();
-
-        //     return redirect()->route('dashboard.admin');
-        // } elseif(Auth::attempt($creadentials) && Auth::user()->status === 'Student') {
-        //     $request->session()->regenerateToken();
-
-        //     return redirect()->route('dashboard.siswa');
-        // }
 
         return back()->withErrors([
             'email' => 'Maaf, email atau password salah. Silahkan coba lagi! 😛',

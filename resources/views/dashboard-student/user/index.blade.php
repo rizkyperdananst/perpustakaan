@@ -31,11 +31,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ Auth::user()->name }}</td>
-                                <td>{{ Auth::user()->email }}</td>
-                                <td>{{ Auth::user()->status }}</td>
+                                <td>{{ Auth::guard('student')->user()->nama }}</td>
+                                <td>{{ Auth::guard('student')->user()->nis }}</td>
+                                <td>{{ Auth::guard('student')->user()->kelas }}</td>
                                 <td width="5%">
-                                    <a href="{{ route('user-student.edit', Auth::user()->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('user-student.edit', Auth::guard('student')->user()->id) }}" class="btn btn-warning">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                 </td>
