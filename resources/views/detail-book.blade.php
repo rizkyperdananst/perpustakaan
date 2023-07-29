@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
      <div class="row mb-3">
-          <div class="col-md-12">
+          <div class="col-md-8">
                <div class="card shadow">
                     <div class="card-body">
                          <img src="{{ url('storage/cover-books/'. $b->image) }}" class="card-img-top" alt="Gambar Buku">

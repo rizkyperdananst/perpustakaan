@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->limit(3)->get();
+        $books = Book::orderBy('id', 'DESC')->limit(4)->get();
         $category_books = CategoryBook::orderBy('nama_kategori', 'ASC')->get();
 
         return view('home', compact('books', 'category_books'));
@@ -44,7 +44,7 @@ class HomeController extends Controller
     public function search_book(Request $request)
     {
         $search = $request->search;
-        $books = Book::where('judul', 'LIKE', '%' . $search . '%')->paginate(1);
+        $books = Book::where('judul', 'LIKE', '%' . $search . '%' )->orWhere('pengarang', 'LIKE', '%' . $search . '%')->paginate(1);
         $book = Book::orderBy('id', 'DESC')->paginate(8);
 
         return view('search-book', compact('books', 'book'));

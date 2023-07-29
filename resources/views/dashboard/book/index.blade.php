@@ -2,7 +2,6 @@
 @section('title', 'Admin | Data Buku')
     
 @section('content')
-<div class="container">
     <div class="row mb-3">
         <div class="col-12">
             @if (session('status'))
@@ -30,6 +29,7 @@
                                     <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Penerbit</th>
+                                    <th>Pengarang</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,14 +44,20 @@
                                     <td>{{ $b->category_books->nama_kategori }}</td>
                                     <td>{{ $b->judul }}</td>
                                     <td>{{ $b->penerbit }}</td>
-                                    <td width="26%">
-                                        <a href="{{ route('book.show', $b->id) }}" class="btn btn-info">Detail</a>
-                                        <a href="{{ route('book.edit', $b->id) }}" class="btn btn-warning">Edit
+                                    <td>{{ $b->pengarang }}</td>
+                                    <td width="19%">
+                                        <a href="{{ route('book.show', $b->id) }}" class="btn btn-info">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('book.edit', $b->id) }}" class="btn btn-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         <form action="{{ route('book.destroy', $b->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -63,5 +69,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
