@@ -3,6 +3,14 @@
     
 @section('content')
 <div class="container">
+  <div class="row mb-2">
+    <div class="col-md-6 text-center">
+      <form action="{{ route('search-book') }}" method="GET">
+        @csrf
+        <input type="search" name="search" class="form-control mb-3" placeholder="Cari judul atau pengarang buku">
+      </form> 
+    </div>
+  </div>
      <div class="row mb-3">
        @forelse ($books as $b)
        <div class="col-md-8">
@@ -17,7 +25,9 @@
          </div>
        </div>
        @empty
-           <h3>Data buku kosong</h3>
+       <div class="alert alert-danger mt-2 mb-2 p-2">
+        <h4>Data Yang Anda Cari Tidak Ada!</h4>
+       </div>
        @endforelse
      </div>
      <div class="row d-flex justify-content-center align-items-center">
