@@ -11,12 +11,6 @@
         <input type="search" name="search" class="form-control mb-3" placeholder="Cari judul atau pengarang buku">
       </form> 
     </div>
-    <div class="col-md-6 text-center">
-      <form action="{{ route('search-book') }}" method="GET">
-        @csrf
-        <input type="search" name="search" class="form-control mb-3" placeholder="Cari Judul Buku">
-      </form> 
-    </div>
   </div>
   <div class="row">
     @forelse ($books as $b)

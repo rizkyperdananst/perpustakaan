@@ -3,7 +3,7 @@
     
 @section('content')
 <div class="container">
-     <div class="row mb-3">
+     {{-- <div class="row mb-3">
           <div class="col-md-8">
                <div class="card shadow">
                     <div class="card-body">
@@ -13,7 +13,15 @@
                     </div>
                </div>
           </div>
-     </div>
+     </div> --}}
+     <div class="row mb-2">
+          <div class="col-md-6 text-center">
+            <form action="{{ route('search-book') }}" method="GET">
+              @csrf
+              <input type="search" name="search" class="form-control mb-3" placeholder="Cari judul atau pengarang buku">
+            </form> 
+          </div>
+        </div>
      <div class="row mb-3">
        @forelse ($books as $b)
        <div class="col-md-3">
