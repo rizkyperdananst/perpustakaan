@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\CategoryBook;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryBookController extends Controller
 {
