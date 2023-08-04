@@ -26,4 +26,9 @@ class Book extends Model
     {
         return $this->belongsTo(CategoryBook::class, 'category_book_id');
     }
+
+    public function peminjaman()
+    {
+        return $this->hasMany(Borrow::class);
+    }
 }

@@ -30,6 +30,8 @@
                                     <th>Judul</th>
                                     <th>Penerbit</th>
                                     <th>Pengarang</th>
+                                    <th>Stok</th>
+                                    <th>Siswa Yang Meminjam</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -37,7 +39,7 @@
                                 @php
                                     $no= 1;
                                 @endphp
-                                @foreach ($books as $b)
+                                @foreach ($bukuDenganPeminjam as $b)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td><img src="{{ url('storage/cover-books/', $b->image) }}" width="150" alt="" class="img img-fluid img-thumbnail border-dark"></td>
@@ -45,6 +47,19 @@
                                     <td>{{ $b->judul }}</td>
                                     <td>{{ $b->penerbit }}</td>
                                     <td>{{ $b->pengarang }}</td>
+                                    <td>{{ $b->stok }}</td>
+                                    <td>
+                                        @forelse ($b->peminjaman as $peminjaman)
+                                        <ul>
+                                            <li>{{ $peminjaman->students->nama }}</li>
+                                        </ul>
+                                        @empty
+                                        <ul>
+                                            <li>-</li>
+                                        </ul>
+                                        @endforelse
+                                    </td>
+                                    {{-- <td>{{ $b->peminjaman->students->nama }}</td> --}}
                                     <td width="19%">
                                         <a href="{{ route('book.show', $b->id) }}" class="btn btn-info">
                                             <i class="fa-solid fa-eye"></i>

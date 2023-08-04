@@ -13,9 +13,21 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->get();
+        // $books = Book::orderBy('id', 'DESC')->get();
 
-        return view('dashboard.book.index', compact('books'));
+        $bukuDenganPeminjam = Book::with('peminjaman.students')->get();
+
+        // foreach ($bukuDenganPeminjam as $buku) {
+        //     echo "Judul Buku : " . $buku->judul . "\n";
+    
+        //     foreach ($buku->peminjaman as $peminjaman) {
+        //     echo "Peminjam: " . $peminjaman->students->nama . "\n";
+        //     echo "Tanggal Pinjam: " . $peminjaman->peminjaman . "\n";
+        //     // ...
+        //     }
+        // }
+
+        return view('dashboard.book.index', compact('bukuDenganPeminjam'));
     }
 
     public function create()
